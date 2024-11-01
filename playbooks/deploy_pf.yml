@@ -1,0 +1,12 @@
+- name: Configuration deployment to CVaaS
+  hosts: PF_NETWORK # <-- Targeted devices
+  connection: local
+  gather_facts: false
+  tasks:
+    - name: Deploy configurations and tags to CloudVision
+      ansible.builtin.import_role:
+        name: arista.avd.cv_deploy
+      vars:
+        cv_server: www.arista.io
+        cv_run_change_control: true
+        cv_token: "PUT_TOKEN_HERE"
